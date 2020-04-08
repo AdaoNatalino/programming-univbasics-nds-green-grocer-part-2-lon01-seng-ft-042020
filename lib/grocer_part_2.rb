@@ -5,9 +5,12 @@ def apply_coupons(cart, coupons)
   counter = 0 
   while counter < coupons.length
     cart_item = find_item_by_name_in_collection(coupons[counter][:item], cart) #finding if the cart have cupons to apply
+    #binding.pry
     couponed_item_name = "#{coupons[counter][:item]} W/COUPON" #changing the name to what the new array should be
     cart_item_with_coupon = find_item_by_name_in_collection(couponed_item_name, cart) #checking if already applied once
+    #binding.pry
     if cart_item && cart_item[:count] >= coupons[counter][:num] #it checks if cart has enough itens to apply coupon
+      #binding.pry
       if cart_item_with_coupon
         cart_item_with_coupon[:count] += coupons[counter][:num] #increase the count by one
         cart_item[:count] -= coupons[counter][:num] #used the coupon (-1)
