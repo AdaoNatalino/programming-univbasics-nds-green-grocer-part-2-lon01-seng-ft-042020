@@ -9,17 +9,17 @@ def apply_coupons(cart, coupons)
     cart_item_with_coupon = find_item_by_name_in_collection(couponed_item_name, cart) 
     if cart_item && cart_item[:count] >= coupons[counter][:num] #check if cart has enough itens to apply coupon
       if cart_item_with_coupon
-        cart_item_with_coupon[:count] += coupons[counter][:num]
-        cart_item[:count] -= coupons[counter][:num]
-      else
+        cart_item_with_coupon[:count] += coupons[counter][:num] #increase the count by one
+        cart_item[:count] -= coupons[counter][:num] #used the coupon (-1)
+      else #creating the hash in the layout the lesson wants
         cart_item_with_coupon = {
           :item => couponed_item_name,
           :price => coupons[counter][:cost] / coupons[counter][:num],
           :count => coupons[counter][:num],
           :clearance => cart_item[:clearance]
         }
-        cart << cart_item_with_coupon
-        cart_item[:count] -= coupons[counter][:num]
+        cart << cart_item_with_coupon #pushing the hash just created to the array
+        cart_item[:count] -= coupons[counter][:num] #substracting the number from the cart you just used
       end
     end
   counter +=1
