@@ -36,7 +36,7 @@ require 'pry'
   cart.each do |item_hash|
     existe = find_item_by_name_in_collection(item_hash[:item], coupons)
     
-    binding.pry
+    #binding.pry
     if existe #does it have coupon?
     #binding.pry
       coupons.each do |coupons_item_hash|
